@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'screens/login_screen.dart';
+import 'screens/deal_screen.dart';
+import 'screens/education_screen.dart';
+import 'screens/finance_screen.dart';
+import 'screens/goal_screen.dart';
+import 'screens/news_screen.dart';
+import 'screens/profile_screen.dart';
+import 'screens/summary_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +17,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      initialRoute: LoginScreen.id,
+      routes: {
+        LoginScreen.id: (context) => LoginScreen(),
+        DealScreen.id: (context) => DealScreen(),
+        EducationScreen.id: (context) => EducationScreen(),
+        FinanceScreen.id: (context) => FinanceScreen(),
+        GoalScreen.id: (context) => GoalScreen(),
+        NewsScreen.id: (context) => NewsScreen(),
+        ProfileScreen.id: (context) => ProfileScreen(),
+        SummaryScreen.id: (context) => SummaryScreen()
+      },
+
+      title: 'FintechFolio',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -44,6 +64,9 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+
+
+
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
+
   GradientAppBar({Key key, this.title}) : preferredSize = Size.fromHeight(kToolbarHeight), super(key: key);
 
   @override

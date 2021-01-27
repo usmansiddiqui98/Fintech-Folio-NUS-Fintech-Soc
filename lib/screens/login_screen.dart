@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fintech_folio/components/gradient_app_bar.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
@@ -43,11 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      appBar: GradientAppBar(title: "Starting Screen"),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -86,4 +83,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-

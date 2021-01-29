@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fintech_folio/components/gradient_app_bar.dart';
+import 'package:fintech_folio/components/custom_buttom_navigation_bar.dart';
 
 class LoginScreen extends StatefulWidget {
-  static String id = 'login_screen';
+  static const String id = 'login_screen';
 
   LoginScreen({Key key, this.title}) : super(key: key);
 
@@ -44,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: GradientAppBar(title: "Starting Screen"),
+      appBar: GradientAppBar(title: "Login"),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -75,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: CustomBottomNavigationBar(screenId: LoginScreen.id),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',

@@ -1,4 +1,4 @@
-import 'package:firebase_database/firebase_database.dart'
+import 'package:firebase_database/firebase_database.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fintech_folio/components/gradient_app_bar.dart';

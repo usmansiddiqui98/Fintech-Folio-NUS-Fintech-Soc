@@ -5,6 +5,7 @@ import 'package:fintech_folio/components/gradient_app_bar.dart';
 import 'package:fintech_folio/components/custom_buttom_navigation_bar.dart';
 import 'package:fintech_folio/custom/chart_data.dart';
 import 'package:fintech_folio/custom/transaction.dart';
+import 'package:intl/intl.dart';
 
 class FinanceScreen extends StatefulWidget {
   static const String id = 'finance_screen';
@@ -33,12 +34,12 @@ class _FinanceScreenState extends State<FinanceScreen> {
           ),
           transaction(
               "nike",
-              new DateTime.utc(2021, DateTime.january, 1),
+              DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
               Colors.deepPurple,
               10.0),
           transaction(
               "nike",
-              new DateTime.utc(2021, DateTime.january, 1),
+              DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
               Colors.deepPurple,
               10.0),
         ],
@@ -71,12 +72,12 @@ class _FinanceScreenState extends State<FinanceScreen> {
         ),
         transaction(
             "nike",
-            new DateTime.utc(2021, DateTime.january, 1),
+            DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
             Colors.deepPurple,
             10.0),
         transaction(
             "nike",
-            new DateTime.utc(2021, DateTime.january, 1),
+            DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
             Colors.deepPurple,
             10.0),
       ],
@@ -155,7 +156,7 @@ class _FinanceScreenState extends State<FinanceScreen> {
                             ),
                             Align(
                               alignment: Alignment.bottomRight,
-                              child: Text('dummy value'),
+                              child: Text('1120'),
                             ),
                           ],
                         ),
@@ -170,7 +171,7 @@ class _FinanceScreenState extends State<FinanceScreen> {
                             ),
                             Align(
                               alignment: Alignment.bottomRight,
-                              child: Text('dummy value'),
+                              child: Text('5500'),
                             ),
                           ],
                         ),

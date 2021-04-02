@@ -7,6 +7,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:fintech_folio/custom/chart_data.dart';
 import 'package:fintech_folio/custom/transaction.dart';
 import 'finance_screen.dart';
+import 'package:intl/intl.dart';
 
 class SummaryScreen extends StatefulWidget {
   static const String id = 'summary_screen';
@@ -172,12 +173,12 @@ class _SummaryScreenState extends State<SummaryScreen> {
                           ),
                           transaction(
                               "nike",
-                              new DateTime.utc(2021, DateTime.january, 1),
+                              DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
                               Colors.deepPurple,
                               10.00),
                           transaction(
                               "nike",
-                              new DateTime.utc(2021, DateTime.january, 1),
+                              DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
                               Colors.blue,
                               10.00),
                         ],

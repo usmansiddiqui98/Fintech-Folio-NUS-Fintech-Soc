@@ -16,7 +16,6 @@ class _NewsScreenState extends State<NewsScreen> {
         appBar: GradientAppBar(title: "News"),
         bottomNavigationBar: CustomBottomNavigationBar(screenId: NewsScreen.id),
         body: Container(
-          child:,
         ));
   }
 }
@@ -27,7 +26,7 @@ class CategoryTile extends StatelessWidget {
 
   CategoryTile({this.imageUrl, this.categoryName})
 
-  @override
+  {}@override
   Widget build(BuildContext context) {
     return Container(
       child: Stack(

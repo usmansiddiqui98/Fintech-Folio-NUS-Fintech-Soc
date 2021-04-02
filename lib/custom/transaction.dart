@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class transaction extends StatelessWidget {
   // const transaction({
   //   Key key,
   // }) : super(key: key);
   String item;
-  DateTime date;
+  String date;
   MaterialColor color;
   double cost;
 
-  transaction(String item, DateTime date, MaterialColor color, double cost) {
+  transaction(String item, String date, MaterialColor color, double cost) {
     this.item = item;
     this.date = date;
     this.color = color;
@@ -30,7 +31,7 @@ class transaction extends StatelessWidget {
         Column(
           children: [
             Text(this.item),
-            Text(this.date.toString()),
+            Text(this.date),
           ],
         ),
         Expanded(

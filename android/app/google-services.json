@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "229772927290",
+    "project_id": "fintechfolio",
+    "storage_bucket": "fintechfolio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229772927290:android:aaf5970d93a13717913003",
+        "android_client_info": {
+          "package_name": "com.usmansiddiqui.fintech_folio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229772927290-vlft337seis0jvpspkr7a2l4upocj3ct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkWooGQDaLlE2QAK6SC6ki3mEqTIQ4dWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229772927290-vlft337seis0jvpspkr7a2l4upocj3ct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

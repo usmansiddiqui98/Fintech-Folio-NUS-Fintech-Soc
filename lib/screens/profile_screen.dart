@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
-  static String id = 'profile_screen';
+  static const String id = 'profile_screen';
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();

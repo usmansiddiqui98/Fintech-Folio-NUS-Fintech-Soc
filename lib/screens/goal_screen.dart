@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GoalScreen extends StatefulWidget {
-  static String id = 'goal_screen';
+  static const String id = 'goal_screen';
 
   @override
   _GoalScreenState createState() => _GoalScreenState();

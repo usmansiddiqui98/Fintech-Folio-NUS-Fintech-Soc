@@ -2,6 +2,7 @@ import 'package:fintech_folio/screens/summary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fintech_folio/components/rounded_button.dart';
 import 'summary_screen.dart';
+import 'registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -24,7 +25,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -78,10 +78,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushNamed(context, SummaryScreen.id);
                   }),
               RoundedButton(
-                  title: 'Biometric Login',
+                  title: 'Email Login',
                   color: Colors.white,
                   onPressed: () {
-                    Navigator.pushNamed(context, SummaryScreen.id);
+                    Navigator.pushNamed(context, RegistrationScreen.id);
                   })
             ],
           ),

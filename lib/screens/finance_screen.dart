@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fintech_folio/components/gradient_app_bar.dart';
 import 'package:fintech_folio/components/custom_buttom_navigation_bar.dart';
+import 'package:fintech_folio/custom/chart_data.dart';
+import 'package:fintech_folio/custom/transaction.dart';
 
 class FinanceScreen extends StatefulWidget {
   static const String id = 'finance_screen';
@@ -14,7 +16,34 @@ class FinanceScreen extends StatefulWidget {
 class _FinanceScreenState extends State<FinanceScreen> {
 
   Widget today() {
-    return Align();
+    return Align(child: Card(
+      color: Colors.white,
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text('Recent Transactions'),
+              ),
+              Expanded(
+                child: Container(),
+              ),
+            ],
+          ),
+          transaction(
+              "nike",
+              new DateTime.utc(2021, DateTime.january, 1),
+              Colors.deepPurple,
+              10.0),
+          transaction(
+              "nike",
+              new DateTime.utc(2021, DateTime.january, 1),
+              Colors.deepPurple,
+              10.0),
+        ],
+      ),
+    ),);
   }
 
   Widget weekly() {
@@ -25,7 +54,34 @@ class _FinanceScreenState extends State<FinanceScreen> {
     return Align();
   }
 
-  Widget _displayWidget;
+  Widget _displayWidget = Card(
+    color: Colors.white,
+    child: Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text('Recent Transactions'),
+            ),
+            Expanded(
+              child: Container(),
+            ),
+          ],
+        ),
+        transaction(
+            "nike",
+            new DateTime.utc(2021, DateTime.january, 1),
+            Colors.deepPurple,
+            10.0),
+        transaction(
+            "nike",
+            new DateTime.utc(2021, DateTime.january, 1),
+            Colors.deepPurple,
+            10.0),
+      ],
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {

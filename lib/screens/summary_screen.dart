@@ -3,6 +3,8 @@ import 'package:fintech_folio/components/gradient_app_bar.dart';
 import 'package:fintech_folio/components/custom_buttom_navigation_bar.dart';
 import 'package:fintech_folio/functions/user_database.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:fintech_folio/custom/chart_data.dart';
+import 'package:fintech_folio/custom/transaction.dart';
 import 'finance_screen.dart';
 
 class SummaryScreen extends StatefulWidget {
@@ -12,15 +14,7 @@ class SummaryScreen extends StatefulWidget {
   _SummaryScreenState createState() => _SummaryScreenState();
 }
 
-class ChartData {
-  ChartData(this.x, this.y, this.color);
-  final String x;
-  final double y;
-  final Color color;
-}
-
 class _SummaryScreenState extends State<SummaryScreen> {
-
   test() async {
     //Pass in the unique id, "2" is the id for this user for testing
     UserDatabase userdb = new UserDatabase("3");
@@ -98,26 +92,26 @@ class _SummaryScreenState extends State<SummaryScreen> {
                       child: SfCircularChart(
                         legend: Legend(isVisible: true),
                         series: <CircularSeries>[
-                        // Renders radial bar chart
-                        RadialBarSeries<ChartData, String>(
-                        dataSource: <ChartData>[
-                          ChartData("Transport", 40, Color(0x5680E9)),
-                          ChartData("Food", 50, Color(0x84CEEB)),
-                          ChartData("Leisure", 60, Color(0x5AB9EA)),
-                          ChartData("Others", 35, Color(0x8860D0)),
+                          // Renders radial bar chart
+                          RadialBarSeries<ChartData, String>(
+                            dataSource: <ChartData>[
+                              ChartData("Transport", 40, Color(0x5680E9)),
+                              ChartData("Food", 50, Color(0x84CEEB)),
+                              ChartData("Leisure", 60, Color(0x5AB9EA)),
+                              ChartData("Others", 35, Color(0x8860D0)),
+                            ],
+                            pointColorMapper: (ChartData data, _) => data.color,
+                            xValueMapper: (ChartData data, _) => data.x,
+                            yValueMapper: (ChartData data, _) => data.y,
+                            cornerStyle: CornerStyle.endCurve,
+                            trackColor: Color(0xdddddd),
+                            // dataLabelSettings: DataLabelSettings(isVisible: true),
+                            radius: '80%',
+                          ),
                         ],
-                          pointColorMapper:(ChartData data,  _) => data.color,
-                          xValueMapper: (ChartData data, _) => data.x,
-                          yValueMapper: (ChartData data, _) => data.y,
-                          cornerStyle: CornerStyle.endCurve,
-                          trackColor: Color(0xdddddd),
-                          // dataLabelSettings: DataLabelSettings(isVisible: true),
-                          radius: '80%',
+                      ),
                     ),
                   ],
-                ),
-              ),
-              ],
                 ),
               ),
               Card(
@@ -147,6 +141,16 @@ class _SummaryScreenState extends State<SummaryScreen> {
                         ),
                       ],
                     ),
+                    transaction(
+                        "nike",
+                        new DateTime.utc(2021, DateTime.january, 1),
+                        Colors.deepPurple,
+                        10.0),
+                    transaction(
+                        "nike",
+                        new DateTime.utc(2021, DateTime.january, 1),
+                        Colors.deepPurple,
+                        10.0),
                   ],
                 ),
               ),

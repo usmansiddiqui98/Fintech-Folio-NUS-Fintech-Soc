@@ -5,7 +5,6 @@ import '../screens/education_screen.dart';
 import '../screens/finance_screen.dart';
 import '../screens/summary_screen.dart';
 
-
 class CustomBottomNavigationBar extends StatelessWidget {
   final String screenId;
 
@@ -20,7 +19,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   ];
 
   int _getCurrentIndex() {
-    for ( int i = 0; i< this.screenIdList.length; i += 1 ) {
+    for (int i = 0; i < this.screenIdList.length; i += 1) {
       if (this.screenIdList[i] == this.screenId) {
         return i;
       }
@@ -50,12 +49,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Tab(icon: Image.asset("assets/icons/finances.png")),
             activeIcon:
-            Tab(icon: Image.asset("assets/icons/finances_active.png")),
+                Tab(icon: Image.asset("assets/icons/finances_active.png")),
             label: "Finances"),
         BottomNavigationBarItem(
             icon: Tab(icon: Image.asset("assets/icons/education.png")),
             activeIcon:
-            Tab(icon: Image.asset("assets/icons/education_active.png")),
+                Tab(icon: Image.asset("assets/icons/education_active.png")),
             label: "Education"),
       ],
       currentIndex: _getCurrentIndex(),

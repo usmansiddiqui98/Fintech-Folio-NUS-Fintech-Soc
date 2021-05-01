@@ -19,7 +19,7 @@ class UserDatabase {
   Future<void> setName (String name) async {
     String nameInDatabase = await this.getName();
 
-    //then set the name
+    // when name not there, then set the name
     if (nameInDatabase == null) {
       _userRef.set({
         'name': name
@@ -36,6 +36,24 @@ class UserDatabase {
     int age = (await _userRef.child("age").once()).value;
     return age;
   }
+
+  Future<void> setTransaction (double cash, String category, String itemName, DateTime date) async {
+    String TransactionID = generateTransactionID();
+
+    _userRef.child("Transactions").child(TransactionID).set({
+      "category": category,
+      "value": cash,
+      "date": date.toString().substring(0, 10),
+      "itemName": itemName
+    });
+  }
+
+  String generateTransactionID() {
+    String stringDate = DateTime.now().toString();
+    return stringDate.substring(0, stringDate.length - 7);
+  }
+
+
 
   //If age already there, then just do an update
   Future<void> setAge (int age) async {
@@ -114,6 +132,7 @@ class UserDatabase {
 
     //Get goal and expediture will return Future<Map>
     //print(await userdb.getGoal());
+    userdb.setTransaction(10, "Food", "airpods", DateTime.now());
     print(await userdb.getExpenditure());
   }
 }

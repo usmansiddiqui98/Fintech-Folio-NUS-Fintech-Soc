@@ -1,4 +1,5 @@
 import 'package:fintech_folio/constants.dart';
+import 'package:fintech_folio/screens/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fintech_folio/components/gradient_app_bar.dart';
 import 'package:fintech_folio/components/custom_buttom_navigation_bar.dart';
@@ -78,6 +79,12 @@ class _SummaryScreenState extends State<SummaryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushNamed(context, TransactionScreen.id);
+        },
+      ),
       appBar: GradientAppBar(title: "Home"),
       body: SafeArea(
         child: Container(

@@ -18,6 +18,7 @@ class SummaryScreen extends StatefulWidget {
 
 class _SummaryScreenState extends State<SummaryScreen> {
   List<ChartData> _chartDataList = new List();
+  List<Widget> _transactionDataList = new List();
 
   getChartDataList() async {
     UserDatabase userdb = new UserDatabase("3");
@@ -68,11 +69,35 @@ class _SummaryScreenState extends State<SummaryScreen> {
     });
   }
 
+  getRecentTransactionsData() async {
+    UserDatabase userdb = new UserDatabase("3");
+    Map transactionData = await userdb.getTransactions();
+    List<Widget> transactions = new List();
+    int limit = 3;
+    int count = 0;
+    for (String datetime in transactionData.keys) {
+      if (count >= limit) { break; }
+      Map record = transactionData[datetime];
+      print(record);
+      transactions.add(new Transaction(
+          record.entries.elementAt(1).value,
+          record.entries.elementAt(0).value,
+          kRecentTransactionColors[count],
+          record.entries.elementAt(3).value.toDouble()));
+      count++;
+    }
+
+    setState(() {
+      _transactionDataList = transactions;
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getChartDataList();
+    getRecentTransactionsData();
   }
 
   @override
@@ -110,81 +135,70 @@ class _SummaryScreenState extends State<SummaryScreen> {
                   ],
                 ),
               ),
-              Card(
-                color: Colors.white,
-                child: Column(
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text('Expenses'),
-                    ),
-                    // For chart and keys
-                    Align(
-                      child: SfCircularChart(
-                        legend: Legend(isVisible: true),
-                        series: <CircularSeries>[
-                          // Renders radial bar chart
-                          RadialBarSeries<ChartData, String>(
-                            dataSource: _chartDataList,
-                            // dataSource: <ChartData>[
-                            //   ChartData("Transport", 40, Color(0x5680E9)),
-                            //   ChartData("Food", 50, Color(0x84CEEB)),
-                            //   ChartData("Leisure", 60, Color(0x5AB9EA)),
-                            //   ChartData("Others", 35, Color(0x8860D0)),
-                            // ],
-                            pointColorMapper: (ChartData data, _) => data.color,
-                            xValueMapper: (ChartData data, _) => data.x,
-                            yValueMapper: (ChartData data, _) => data.y,
-                            cornerStyle: CornerStyle.endCurve,
-                            trackColor: Color(0xdddddd),
-                            // dataLabelSettings: DataLabelSettings(isVisible: true),
-                            radius: '80%',
-                          ),
-                        ],
+              Container(
+                height: 459,
+                child: Card(
+                  color: Colors.white,
+                  child: Column(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text('Expenses'),
                       ),
-                    ),
-                    Card(
-                      color: Colors.white,
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text('Recent Transactions'),
-                              ),
-                              Expanded(
-                                child: Container(),
-                              ),
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: TextButton(
-                                  child: Text('See all'),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                FinanceScreen()));
-                                  },
+                      // For chart and keys
+                      Align(
+                        heightFactor: 0.85,
+                        child: SfCircularChart(
+                          legend: Legend(isVisible: true),
+                          series: <CircularSeries>[
+                            // Renders radial bar chart
+                            RadialBarSeries<ChartData, String>(
+                              dataSource: _chartDataList,
+                              pointColorMapper: (ChartData data, _) => data.color,
+                              xValueMapper: (ChartData data, _) => data.x,
+                              yValueMapper: (ChartData data, _) => data.y,
+                              cornerStyle: CornerStyle.endCurve,
+                              trackColor: Color(0xdddddd),
+                              // dataLabelSettings: DataLabelSettings(isVisible: true),
+                              radius: '80%',
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        color: Colors.white,
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text('Recent Transactions'),
                                 ),
-                              ),
-                            ],
-                          ),
-                          transaction(
-                              "nike",
-                              DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
-                              Colors.deepPurple,
-                              10.00),
-                          transaction(
-                              "nike",
-                              DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
-                              Colors.blue,
-                              10.00),
-                        ],
+                                Expanded(
+                                  child: Container(),
+                                ),
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: TextButton(
+                                    child: Text('See all'),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  FinanceScreen()));
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            ..._transactionDataList
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

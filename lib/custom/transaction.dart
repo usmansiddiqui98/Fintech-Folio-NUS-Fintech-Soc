@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class transaction extends StatelessWidget {
+class Transaction extends StatelessWidget {
   // const transaction({
   //   Key key,
   // }) : super(key: key);
-  String item;
-  String date;
-  MaterialColor color;
-  double cost;
+  final String item;
+  final String date;
+  final MaterialColor color;
+  final double cost;
 
-  transaction(String item, String date, MaterialColor color, double cost) {
-    this.item = item;
-    this.date = date;
-    this.color = color;
-    this.cost = cost;
-  }
+  Transaction(this.item, this.date, this.color, this.cost);
 
   @override
   Widget build(BuildContext context) {

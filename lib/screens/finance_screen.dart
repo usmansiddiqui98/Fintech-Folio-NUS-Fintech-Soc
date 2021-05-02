@@ -1,11 +1,13 @@
 import 'package:fintech_folio/components/rounded_button.dart';
+import 'package:fintech_folio/functions/user_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fintech_folio/components/gradient_app_bar.dart';
 import 'package:fintech_folio/components/custom_buttom_navigation_bar.dart';
-import 'package:fintech_folio/custom/chart_data.dart';
 import 'package:fintech_folio/custom/transaction.dart';
 import 'package:intl/intl.dart';
+
+import '../constants.dart';
 
 class FinanceScreen extends StatefulWidget {
   static const String id = 'finance_screen';
@@ -15,6 +17,37 @@ class FinanceScreen extends StatefulWidget {
 }
 
 class _FinanceScreenState extends State<FinanceScreen> {
+  List<Widget> _transactionDataList = new List();
+
+  getRecentTransactionsData() async {
+    UserDatabase userdb = new UserDatabase("3");
+    Map transactionData = await userdb.getTransactions();
+    List<Widget> transactions = new List();
+    // int limit = 3;
+    int count = 0;
+    for (String datetime in transactionData.keys) {
+      // if (count >= limit) { break; }
+      count++;
+      Map record = transactionData[datetime];
+      print(record);
+      transactions.add(new Transaction(
+          record.entries.elementAt(1).value,
+          record.entries.elementAt(0).value,
+          kRecentTransactionColors[count%3],
+          record.entries.elementAt(3).value.toDouble()));
+    }
+
+    setState(() {
+      _transactionDataList = transactions;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getRecentTransactionsData();
+  }
 
   Widget today() {
     return Align(child: Card(
@@ -32,16 +65,7 @@ class _FinanceScreenState extends State<FinanceScreen> {
               ),
             ],
           ),
-          transaction(
-              "nike",
-              DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
-              Colors.deepPurple,
-              10.0),
-          transaction(
-              "nike",
-              DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
-              Colors.deepPurple,
-              10.0),
+          ..._transactionDataList
         ],
       ),
     ),);
@@ -55,34 +79,7 @@ class _FinanceScreenState extends State<FinanceScreen> {
     return Align();
   }
 
-  Widget _displayWidget = Card(
-    color: Colors.white,
-    child: Column(
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text('Recent Transactions'),
-            ),
-            Expanded(
-              child: Container(),
-            ),
-          ],
-        ),
-        transaction(
-            "nike",
-            DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
-            Colors.deepPurple,
-            10.0),
-        transaction(
-            "nike",
-            DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
-            Colors.deepPurple,
-            10.0),
-      ],
-    ),
-  );
+  Widget _displayWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +139,7 @@ class _FinanceScreenState extends State<FinanceScreen> {
                               child: Text('Expenses'),
                             ),
                             // For changing widget
-                            _displayWidget,
+                            _displayWidget ?? today(),
                           ],
                         ),
                       ),

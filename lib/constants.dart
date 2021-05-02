@@ -20,6 +20,12 @@ const List<Color> kChartDataColors = [
   Color(0x8860D0)
 ];
 
+const List<MaterialColor> kRecentTransactionColors = [
+  Colors.deepPurple,
+  Colors.blue,
+  Colors.indigo
+];
+
 const kMessageTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   hintText: 'Type your message here...',

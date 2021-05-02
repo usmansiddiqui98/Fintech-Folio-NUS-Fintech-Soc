@@ -32,6 +32,13 @@ class UserDatabase {
     }
   }
 
+  Future<void> setTransaction (double cash) async {
+    _userRef.child("Transactions").child("tid").set({
+      "category": "walao",
+      "value": cash
+    });
+  }
+
   Future<int> getAge() async {
     int age = (await _userRef.child("age").once()).value;
     return age;
@@ -82,6 +89,10 @@ class UserDatabase {
     });
   }
 
+  Future<Map> getTransactions() async {
+    return (await _userRef.child("Transactions").once()).value;
+  }
+
   Future<Map> getExpenditure() async {
       return (await _userRef.child("expenditures").once()).value;
   }
@@ -114,6 +125,7 @@ class UserDatabase {
 
     //Get goal and expediture will return Future<Map>
     //print(await userdb.getGoal());
-    print(await userdb.getExpenditure());
+    print(await userdb.getTransactions());
+    print("walaoeh");
   }
 }

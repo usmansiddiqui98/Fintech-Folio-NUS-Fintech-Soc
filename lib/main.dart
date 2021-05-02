@@ -1,4 +1,5 @@
 import 'package:fintech_folio/screens/registration_screen.dart';
+import 'package:fintech_folio/screens/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/deal_screen.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         ProfileScreen.id: (context) => ProfileScreen(),
         SummaryScreen.id: (context) => SummaryScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
+        TransactionScreen.id: (context) => TransactionScreen(),
       },
       title: 'FintechFolio',
       theme: ThemeData(fontFamily: 'Nunito'),
